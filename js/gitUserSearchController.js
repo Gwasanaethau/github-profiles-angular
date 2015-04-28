@@ -5,13 +5,13 @@ githubUserSearch.controller('GitUserSearchController', ['$scope', '$resource', f
 
   $scope.doSearch = function() {
 
-    if ( $scope.searchTerm != "" ) {
+    if ( $scope.searchTerm !== "" ) {
       $scope.searchResult = $scope.searchResource.get(
         { q: $scope.searchTerm }
       );
       $scope.showSpan = true;
     } else {
       $scope.showSpan = false;
-    };
+    }
   };
 }]);
