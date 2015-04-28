@@ -1,12 +1,17 @@
-githubUserSearch.controller('GitUserSearchController', ['$resource', function($resource) {
+githubUserSearch.controller('GitUserSearchController', ['$scope', '$resource', function($scope, $resource) {
 
-  var self = this;
 
-  var searchResource = $resource('https://api.github.com/search/users/');
+  $scope.searchResource = $resource('https://api.github.com/search/users/');
 
-  self.doSearch = function() {
-    self.searchResult = searchResource.get(
-      { q: self.searchTerm }
-    );
+  $scope.doSearch = function() {
+
+    if ( $scope.searchTerm != "" ) {
+      $scope.searchResult = $scope.searchResource.get(
+        { q: $scope.searchTerm }
+      );
+      $scope.showSpan = true;
+    } else {
+      $scope.showSpan = false;
+    };
   };
 }]);
